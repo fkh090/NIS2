@@ -2,5 +2,300 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    ...
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIS 2 Directive Presentation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .slide {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        .slide.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .progress-bar-fill {
+            transition: width 0.3s ease-in-out;
+        }
+        .modal {
+            display: none;
+        }
+        .modal.active {
+            display: flex;
+        }
+        .loader {
+            border-top-color: #3498db;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex flex-col items-center justify-center min-h-screen p-4">
+
+    <div class="w-full max-w-4xl bg-white dark:bg-gray-800 rounded-2xl shadow-2xl overflow-hidden">
+        <div class="p-8 md:p-12 min-h-[550px] flex flex-col justify-center">
+            <!-- Slides Container -->
+            <div id="slides-container">
+                <!-- Slide 1: Title -->
+                <div class="slide active text-center">
+                    <span class="text-indigo-500 dark:text-indigo-400 font-semibold">Directive (EU) 2022/2555</span>
+                    <h1 class="text-4xl md:text-5xl font-bold mt-2 mb-4">Navigating the NIS 2 Directive</h1>
+                    <p class="text-lg md:text-xl text-gray-600 dark:text-gray-400">A Comprehensive Guide to Cybersecurity Controls, Classifications, and Milestones</p>
+                    <p class="mt-8 text-gray-500">By Farhad Khankishiyev</p>
+                </div>
+
+                <!-- Slide 2: Executive Summary -->
+                <div class="slide">
+                    <h2 class="text-3xl font-bold mb-6 text-center">Executive Summary</h2>
+                    <ul class="space-y-4 text-lg">
+                        <li class="flex items-start"><span class="text-green-500 mr-3 mt-1">✓</span><span>Replaces and expands upon the original NIS Directive, raising the baseline for cybersecurity across the EU.</span></li>
+                        <li class="flex items-start"><span class="text-green-500 mr-3 mt-1">✓</span><span>Applies to a wider range of sectors, classified as either **Essential** or **Important** entities.</span></li>
+                        <li class="flex items-start"><span class="text-green-500 mr-3 mt-1">✓</span><span>Introduces stricter governance, including direct management accountability for cybersecurity.</span></li>
+                        <li class="flex items-start"><span class="font-semibold text-red-500 flex items-start"><svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg><span>Compliance Deadline: October 18, 2024</span></span></li>
+                    </ul>
+                </div>
+
+                <!-- Slide 3: Scope and Classification -->
+                <div class="slide">
+                    <h2 class="text-3xl font-bold mb-6 text-center">Who is Affected?</h2>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg border border-gray-200 dark:border-gray-600">
+                            <h3 class="font-bold text-xl mb-2 text-blue-500">Essential Entities</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mb-3">Sectors critical to the economy and society, subject to stricter oversight.</p>
+                            <span class="text-sm font-semibold bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 py-1 px-2 rounded">Annex I</span>
+                            <ul class="mt-3 list-disc list-inside text-gray-700 dark:text-gray-300"><li>Energy & Transport</li><li>Banking & Health</li><li>Digital Infrastructure</li></ul>
+                        </div>
+                        <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg border border-gray-200 dark:border-gray-600">
+                            <h3 class="font-bold text-xl mb-2 text-teal-500">Important Entities</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mb-3">Other critical sectors with a lighter, reactive regulatory touch.</p>
+                             <span class="text-sm font-semibold bg-teal-100 dark:bg-teal-900 text-teal-800 dark:text-teal-200 py-1 px-2 rounded">Annex II</span>
+                            <ul class="mt-3 list-disc list-inside text-gray-700 dark:text-gray-300"><li>Postal & Courier Services</li><li>Waste Management</li><li>Food Production & Manufacturing</li></ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 4: AI Assessment -->
+                <div class="slide">
+                    <h2 class="text-3xl font-bold mb-4 text-center">✨ Am I Affected by NIS 2?</h2>
+                    <p class="text-center text-gray-600 dark:text-gray-400 mb-6">Get a preliminary assessment based on your organization's details.</p>
+                    <form id="nis2-assessment-form" class="max-w-lg mx-auto">
+                        <div class="mb-4"><label for="sector" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Your Sector/Industry</label><input type="text" id="sector" placeholder="e.g., Regional Healthcare Provider, Food Manufacturing" class="mt-1 block w-full px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"></div>
+                        <div class="mb-6"><label for="size" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Company Size</label><select id="size" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"><option>Medium (50-249 employees)</option><option>Large (250+ employees)</option><option>Small (fewer than 50 employees)</option></select></div>
+                        <button type="submit" class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 font-semibold">Analyze My Scope</button>
+                    </form>
+                    <div id="assessment-result-container" class="mt-6 text-center">
+                        <div id="assessment-result" class="prose dark:prose-invert max-w-none"></div>
+                        <button id="download-assessment-btn" class="hidden mt-4 bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-gray-200 py-2 px-4 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-500 font-semibold">Download Results (JSON)</button>
+                    </div>
+                </div>
+
+                <!-- Slide 5: Incident Reporting Timeline -->
+                <div class="slide">
+                    <h2 class="text-3xl font-bold mb-8 text-center">Incident Reporting: The Clock is Ticking</h2>
+                    <div class="relative w-full"><div class="absolute left-0 top-1/2 w-full h-1 bg-indigo-200 dark:bg-indigo-800 rounded"></div><div class="relative flex justify-between items-start"><div class="text-center w-1/3"><div class="bg-indigo-500 text-white w-16 h-16 rounded-full mx-auto flex items-center justify-center font-bold text-lg border-4 border-white dark:border-gray-800">24h</div><h3 class="mt-3 font-semibold">Early Warning</h3><p class="text-sm text-gray-600 dark:text-gray-400">Initial alert</p></div><div class="text-center w-1/3"><div class="bg-indigo-500 text-white w-16 h-16 rounded-full mx-auto flex items-center justify-center font-bold text-lg border-4 border-white dark:border-gray-800">72h</div><h3 class="mt-3 font-semibold">Initial Report</h3><p class="text-sm text-gray-600 dark:text-gray-400">Detailed notification</p></div><div class="text-center w-1/3"><div class="bg-indigo-500 text-white w-16 h-16 rounded-full mx-auto flex items-center justify-center font-bold text-lg border-4 border-white dark:border-gray-800">1mo</div><h3 class="mt-3 font-semibold">Final Report</h3><p class="text-sm text-gray-600 dark:text-gray-400">Full analysis</p></div></div></div>
+                </div>
+
+                <!-- Slide 6: Required Security Measures -->
+                <div class="slide">
+                    <h2 class="text-3xl font-bold mb-6 text-center">Core Security Requirements</h2>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 text-center"><div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">Risk Analysis</div><div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">Incident Handling</div><div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">Business Continuity</div><div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">Supply Chain Security</div><div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">Secure Development</div><div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">Cryptography & MFA</div></div>
+                </div>
+                
+                <!-- Slide 7: Fines and Penalties -->
+                <div class="slide">
+                     <h2 class="text-3xl font-bold mb-6 text-center">The Cost of Non-Compliance</h2>
+                    <div class="grid md:grid-cols-2 gap-6 text-center"><div class="bg-red-50 dark:bg-red-900/30 p-6 rounded-lg border border-red-200 dark:border-red-800"><h3 class="font-bold text-xl mb-2 text-red-600 dark:text-red-400">Essential Entities</h3><p class="text-4xl font-bold text-red-700 dark:text-red-300">€10M</p><p class="text-gray-600 dark:text-gray-400">or 2% of global revenue</p></div><div class="bg-orange-50 dark:bg-orange-900/30 p-6 rounded-lg border border-orange-200 dark:border-orange-800"><h3 class="font-bold text-xl mb-2 text-orange-600 dark:text-orange-400">Important Entities</h3><p class="text-4xl font-bold text-orange-700 dark:text-orange-300">€7M</p><p class="text-gray-600 dark:text-gray-400">or 1.4% of global revenue</p></div></div>
+                     <p class="text-center mt-6 text-gray-600 dark:text-gray-400">Regulators can also impose non-monetary remedies.</p>
+                </div>
+
+                <!-- Slide 8: Key Milestones -->
+                <div class="slide">
+                    <h2 class="text-3xl font-bold mb-6 text-center">Key Milestones</h2>
+                    <ul class="space-y-4"><li class="flex items-center"><div class="w-4 h-4 rounded-full bg-gray-300 dark:bg-gray-600 mr-4"></div><span><span class="font-semibold">Dec 27, 2022:</span> Directive enters into force</span></li><li class="flex items-center"><div class="w-4 h-4 rounded-full bg-yellow-400 mr-4"></div><span><span class="font-semibold">Oct 17, 2024:</span> National laws must be enacted</span></li><li class="flex items-center"><div class="w-4 h-4 rounded-full bg-red-500 mr-4"></div><span><span class="font-semibold">Oct 18, 2024:</span> Entities must comply</span></li><li class="flex items-center"><div class="w-4 h-4 rounded-full bg-green-500 mr-4"></div><span><span class="font-semibold">Apr 17, 2025:</span> Entity lists completed</span></li></ul>
+                </div>
+
+                <!-- Slide 9: Strategic Recommendations -->
+                <div class="slide">
+                    <h2 class="text-3xl font-bold mb-6 text-center">Strategic Roadmap to Compliance</h2>
+                    <ol class="list-decimal list-inside space-y-3 text-lg mb-8"><li>**Assess Scope:** Determine if you are an Essential or Important entity.</li><li>**Conduct Gap Analysis:** Identify weaknesses against NIS 2 requirements.</li><li>**Strengthen Governance:** Ensure executive accountability and training.</li><li>**Enhance Incident Response:** Refine processes to meet reporting deadlines.</li><li>**Review Supply Chain Risks:** Evaluate security of your partners and suppliers.</li><li>**Align with Standards:** Use frameworks like ISO 27001 to guide implementation.</li></ol>
+                    <div class="text-center"><button id="generate-checklist-btn" class="bg-green-600 text-white py-3 px-6 rounded-lg hover:bg-green-700 font-semibold text-lg transition-transform transform hover:scale-105">✨ Generate My Compliance Checklist</button></div>
+                </div>
+
+                <!-- Slide 10: Final Recommendations & Contact -->
+                <div class="slide text-center">
+                    <h2 class="text-3xl font-bold mb-6">Final Recommendations</h2>
+                     <div class="space-y-4 max-w-2xl mx-auto"><p class="bg-indigo-50 dark:bg-indigo-900/30 p-4 rounded-lg text-indigo-800 dark:text-indigo-200">Don't wait for national law – <span class="font-semibold">act now</span> to prepare.</p><p class="bg-indigo-50 dark:bg-indigo-900/30 p-4 rounded-lg text-indigo-800 dark:text-indigo-200">Treat NIS 2 as a <span class="font-semibold">strategic advantage</span>.</p><p class="bg-indigo-50 dark:bg-indigo-900/30 p-4 rounded-lg text-indigo-800 dark:text-indigo-200">Embed security into <span class="font-semibold">every layer</span> of your business.</p></div>
+                    <div class="mt-10 pt-6 border-t border-gray-200 dark:border-gray-700"><p class="text-lg font-semibold">Farhad Khankishiyev</p><a href="https://www.linkedin.com/in/farhadkhankishiyev/" target="_blank" class="text-indigo-500 dark:text-indigo-400 hover:underline mt-2 inline-block">LinkedIn Profile</a></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation & Progress Bar -->
+        <div class="bg-gray-50 dark:bg-gray-700/50 p-4 border-t border-gray-200 dark:border-gray-700"><div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2 mb-4"><div id="progress-bar" class="bg-indigo-500 h-2 rounded-full progress-bar-fill" style="width: 0%;"></div></div><div class="flex justify-between items-center"><button id="prev-btn" class="px-4 py-2 bg-gray-300 dark:bg-gray-600 text-gray-800 dark:text-gray-200 rounded-lg hover:bg-gray-400 dark:hover:bg-gray-500 disabled:opacity-50">Previous</button><span id="slide-counter" class="text-sm text-gray-600 dark:text-gray-400"></span><button id="next-btn" class="px-4 py-2 bg-indigo-500 text-white rounded-lg hover:bg-indigo-600">Next</button></div></div>
+    </div>
+    
+    <!-- Checklist Modal -->
+    <div id="checklist-modal" class="modal fixed inset-0 bg-black bg-opacity-50 items-center justify-center p-4">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] flex flex-col">
+            <div class="p-4 border-b dark:border-gray-700 flex justify-between items-center"><h3 class="text-xl font-bold">Your NIS 2 Compliance Checklist</h3><button id="close-modal-btn" class="text-gray-500 hover:text-gray-800 dark:hover:text-gray-200 text-2xl leading-none">&times;</button></div>
+            <div id="checklist-content" class="p-6 overflow-y-auto prose dark:prose-invert max-w-none"></div>
+            <div class="p-4 border-t dark:border-gray-700 text-right">
+                <button id="download-checklist-btn" class="hidden bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 font-semibold">Download Checklist (JSON)</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const slideCounter = document.getElementById('slide-counter');
+        const progressBar = document.getElementById('progress-bar');
+        
+        let currentSlide = 0;
+        const totalSlides = slides.length;
+        let userScope = null; // To store assessment result
+        let lastAssessmentData = null; // To store assessment data for download
+        let lastChecklistData = null; // To store checklist data for download
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
+            updateNavigation();
+        }
+
+        function updateNavigation() {
+            slideCounter.textContent = `Slide ${currentSlide + 1} of ${totalSlides}`;
+            const progressPercentage = ((currentSlide + 1) / totalSlides) * 100;
+            progressBar.style.width = `${progressPercentage}%`;
+            prevBtn.disabled = currentSlide === 0;
+            nextBtn.textContent = currentSlide === totalSlides - 1 ? 'Finish' : 'Next';
+        }
+
+        prevBtn.addEventListener('click', () => { if (currentSlide > 0) showSlide(--currentSlide); });
+        nextBtn.addEventListener('click', () => { showSlide(currentSlide < totalSlides - 1 ? ++currentSlide : (currentSlide = 0)); });
+
+        // --- Gemini API & Download Logic ---
+        const assessmentForm = document.getElementById('nis2-assessment-form');
+        const assessmentResult = document.getElementById('assessment-result');
+        const downloadAssessmentBtn = document.getElementById('download-assessment-btn');
+        
+        const generateChecklistBtn = document.getElementById('generate-checklist-btn');
+        const checklistModal = document.getElementById('checklist-modal');
+        const checklistContent = document.getElementById('checklist-content');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+        const downloadChecklistBtn = document.getElementById('download-checklist-btn');
+        
+        const API_KEY = ""; // Kept empty as per instructions
+        const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
+        
+        async function callGemini(prompt) {
+             const payload = { contents: [{ role: "user", parts: [{ text: prompt }] }] };
+             const response = await fetch(API_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+             if (!response.ok) throw new Error(`API call failed with status: ${response.status}`);
+             const result = await response.json();
+             if (result.candidates?.[0]?.content?.parts?.[0]) return result.candidates[0].content.parts[0].text;
+             throw new Error("Invalid response structure from API.");
+        }
+        
+        // --- Data Download Function ---
+        function downloadJSON(data, filename) {
+            const jsonStr = JSON.stringify(data, null, 2);
+            const blob = new Blob([jsonStr], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        assessmentForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const sector = document.getElementById('sector').value;
+            const size = document.getElementById('size').value;
+            if (!sector) {
+                assessmentResult.innerHTML = `<p class="text-red-500">Please enter your sector.</p>`;
+                return;
+            }
+            
+            assessmentResult.innerHTML = `<div class="loader h-8 w-8 mx-auto"></div><p class="mt-2 text-gray-500">Analyzing...</p>`;
+            downloadAssessmentBtn.classList.add('hidden');
+            
+            const prompt = `Based on the EU's NIS 2 Directive, analyze a company in the "${sector}" sector with a size of "${size}". Classify it as a likely 'Essential Entity', 'Important Entity', or 'Not in Scope'. Start your response with the classification in bold (e.g., **Essential Entity**). Then, provide a brief, clear explanation for your reasoning.`;
+            
+            try {
+                const responseText = await callGemini(prompt);
+                assessmentResult.innerHTML = marked.parse(responseText);
+                const match = responseText.match(/\*\*(.*?)\*\*/);
+                if (match) userScope = match[1];
+
+                // Prepare data for download
+                lastAssessmentData = {
+                    query: { sector, size },
+                    assessment: userScope,
+                    details: responseText
+                };
+                downloadAssessmentBtn.classList.remove('hidden');
+
+            } catch (error) {
+                console.error("Gemini API Error:", error);
+                assessmentResult.innerHTML = `<p class="text-red-500">Sorry, an error occurred. Please try again.</p>`;
+            }
+        });
+        
+        downloadAssessmentBtn.addEventListener('click', () => {
+            if (lastAssessmentData) {
+                downloadJSON(lastAssessmentData, 'nis2-scope-assessment.json');
+            }
+        });
+
+        generateChecklistBtn.addEventListener('click', async () => {
+            checklistModal.classList.add('active');
+            checklistContent.innerHTML = `<div class="loader h-12 w-12 mx-auto"></div><p class="mt-4 text-center text-gray-500">✨ Generating your personalized checklist...</p>`;
+            downloadChecklistBtn.classList.add('hidden');
+
+            const scopeInfo = userScope ? `for a company identified as a likely '${userScope}'` : `for a company that needs to determine its scope`;
+            const prompt = `You are a cybersecurity compliance expert. Create a practical, step-by-step compliance checklist for the NIS 2 Directive ${scopeInfo}. The checklist should be based on these key requirements: Risk Analysis, Incident Handling, Business Continuity, Supply Chain Security, Secure Development, Cryptography & MFA. The output must be in Markdown format, with clear headings, sub-points, and actionable items. Make it easy for a business manager to understand.`;
+
+            try {
+                const responseText = await callGemini(prompt);
+                checklistContent.innerHTML = marked.parse(responseText);
+                // Prepare data for download
+                lastChecklistData = {
+                    scope: userScope || 'Not yet assessed',
+                    checklistMarkdown: responseText
+                };
+                downloadChecklistBtn.classList.remove('hidden');
+            } catch (error) {
+                console.error("Gemini API Error:", error);
+                checklistContent.innerHTML = `<p class="text-red-500 text-center">Sorry, could not generate the checklist. Please try again later.</p>`;
+            }
+        });
+
+        downloadChecklistBtn.addEventListener('click', () => {
+            if (lastChecklistData) {
+                downloadJSON(lastChecklistData, 'nis2-compliance-checklist.json');
+            }
+        });
+
+        closeModalBtn.addEventListener('click', () => {
+            checklistModal.classList.remove('active');
+        });
+
+        // Initialize first slide
+        showSlide(currentSlide);
+    </script>
+</body>
 </html>
