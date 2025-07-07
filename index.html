@@ -3,163 +3,162 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NIS 2 Directive Presentation</title>
+    <title>ISO 27001 Controls for Hybrid Cloud Infrastructure</title>
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    
     <style>
+        /* Custom styles for a modern look and feel */
         body {
             font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* A light gray background */
         }
-        .slide {
+        
+        /* Style for the accordion (details/summary) arrow */
+        summary::marker {
+            content: '';
+        }
+        
+        summary::-webkit-details-marker {
             display: none;
-            animation: fadeIn 0.5s ease-in-out;
         }
-        .slide.active {
-            display: block;
+
+        details[open] summary .arrow-down {
+            transform: rotate(180deg);
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+
+        .arrow-down {
+            transition: transform 0.2s ease-in-out;
         }
-        .progress-bar-fill {
-            transition: width 0.3s ease-in-out;
+        
+        /* Gradient header background */
+        .header-gradient {
+            background: linear-gradient(90deg, #1e3a8a, #3b82f6);
+        }
+
+        /* Card styles */
+        .control-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        
+        .control-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.1);
         }
     </style>
 </head>
-<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex flex-col items-center justify-center min-h-screen p-4">
+<body class="antialiased">
 
-    <div class="w-full max-w-4xl bg-white dark:bg-gray-800 rounded-2xl shadow-2xl overflow-hidden">
-        <div class="p-8 md:p-12 min-h-[550px] flex flex-col justify-center">
-            <!-- Slides Container -->
-            <div id="slides-container">
-                <!-- Slide 1: Title -->
-                <div class="slide active text-center">
-                    <span class="text-indigo-500 dark:text-indigo-400 font-semibold">Directive (EU) 2022/2555</span>
-                    <h1 class="text-4xl md:text-5xl font-bold mt-2 mb-4">Navigating the NIS 2 Directive</h1>
-                    <p class="text-lg md:text-xl text-gray-600 dark:text-gray-400">A Comprehensive Guide to Cybersecurity Controls, Classifications, and Milestones</p>
-                    <p class="mt-8 text-gray-500">By Farhad Khankishiyev</p>
-                </div>
+    <!-- Header Section -->
+    <header class="header-gradient text-white p-8 md:p-12 text-center rounded-b-3xl shadow-lg">
+        <h1 class="text-3xl md:text-5xl font-bold mb-2">ISO 27001 for Hybrid Cloud</h1>
+        <p class="text-lg md:text-xl max-w-3xl mx-auto">A comprehensive guide to essential controls for organizations migrating to a hybrid cloud infrastructure while maintaining ISO 27001 certification.</p>
+    </header>
 
-                <!-- Slide 2: Executive Summary -->
-                <div class="slide">
-                    <h2 class="text-3xl font-bold mb-6 text-center">Executive Summary</h2>
-                    <ul class="space-y-4 text-lg">
-                        <li class="flex items-start"><span class="text-green-500 mr-3 mt-1">✓</span><span>Replaces and expands upon the original NIS Directive, raising the baseline for cybersecurity across the EU.</span></li>
-                        <li class="flex items-start"><span class="text-green-500 mr-3 mt-1">✓</span><span>Applies to a wider range of sectors, classified as either **Essential** or **Important** entities.</span></li>
-                        <li class="flex items-start"><span class="text-green-500 mr-3 mt-1">✓</span><span>Introduces stricter governance, including direct management accountability for cybersecurity.</span></li>
-                        <li class="flex items-start"><span class="font-semibold text-red-500 flex items-start"><svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg><span>Compliance Deadline: October 18, 2024</span></span></li>
-                    </ul>
-                </div>
-
-                <!-- Slide 3: Scope and Classification -->
-                <div class="slide">
-                    <h2 class="text-3xl font-bold mb-6 text-center">Who is Affected?</h2>
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg border border-gray-200 dark:border-gray-600">
-                            <h3 class="font-bold text-xl mb-2 text-blue-500">Essential Entities</h3>
-                            <p class="text-gray-600 dark:text-gray-400 mb-3">Sectors critical to the economy and society, subject to stricter oversight.</p>
-                            <span class="text-sm font-semibold bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 py-1 px-2 rounded">Annex I</span>
-                            <ul class="mt-3 list-disc list-inside text-gray-700 dark:text-gray-300"><li>Energy & Transport</li><li>Banking & Health</li><li>Digital Infrastructure</li></ul>
-                        </div>
-                        <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg border border-gray-200 dark:border-gray-600">
-                            <h3 class="font-bold text-xl mb-2 text-teal-500">Important Entities</h3>
-                            <p class="text-gray-600 dark:text-gray-400 mb-3">Other critical sectors with a lighter, reactive regulatory touch.</p>
-                             <span class="text-sm font-semibold bg-teal-100 dark:bg-teal-900 text-teal-800 dark:text-teal-200 py-1 px-2 rounded">Annex II</span>
-                            <ul class="mt-3 list-disc list-inside text-gray-700 dark:text-gray-300"><li>Postal & Courier Services</li><li>Waste Management</li><li>Food Production & Manufacturing</li></ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Slide 4: Incident Reporting Timeline -->
-                <div class="slide">
-                    <h2 class="text-3xl font-bold mb-8 text-center">Incident Reporting: The Clock is Ticking</h2>
-                    <div class="relative w-full"><div class="absolute left-0 top-1/2 w-full h-1 bg-indigo-200 dark:bg-indigo-800 rounded"></div><div class="relative flex justify-between items-start"><div class="text-center w-1/3"><div class="bg-indigo-500 text-white w-16 h-16 rounded-full mx-auto flex items-center justify-center font-bold text-lg border-4 border-white dark:border-gray-800">24h</div><h3 class="mt-3 font-semibold">Early Warning</h3><p class="text-sm text-gray-600 dark:text-gray-400">Initial alert</p></div><div class="text-center w-1/3"><div class="bg-indigo-500 text-white w-16 h-16 rounded-full mx-auto flex items-center justify-center font-bold text-lg border-4 border-white dark:border-gray-800">72h</div><h3 class="mt-3 font-semibold">Initial Report</h3><p class="text-sm text-gray-600 dark:text-gray-400">Detailed notification</p></div><div class="text-center w-1/3"><div class="bg-indigo-500 text-white w-16 h-16 rounded-full mx-auto flex items-center justify-center font-bold text-lg border-4 border-white dark:border-gray-800">1mo</div><h3 class="mt-3 font-semibold">Final Report</h3><p class="text-sm text-gray-600 dark:text-gray-400">Full analysis</p></div></div></div>
-                </div>
-
-                <!-- Slide 5: Required Security Measures -->
-                <div class="slide">
-                    <h2 class="text-3xl font-bold mb-6 text-center">Core Security Requirements</h2>
-                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 text-center"><div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">Risk Analysis</div><div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">Incident Handling</div><div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">Business Continuity</div><div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">Supply Chain Security</div><div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">Secure Development</div><div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">Cryptography & MFA</div></div>
-                </div>
-                
-                <!-- Slide 6: Fines and Penalties -->
-                <div class="slide">
-                     <h2 class="text-3xl font-bold mb-6 text-center">The Cost of Non-Compliance</h2>
-                    <div class="grid md:grid-cols-2 gap-6 text-center"><div class="bg-red-50 dark:bg-red-900/30 p-6 rounded-lg border border-red-200 dark:border-red-800"><h3 class="font-bold text-xl mb-2 text-red-600 dark:text-red-400">Essential Entities</h3><p class="text-4xl font-bold text-red-700 dark:text-red-300">€10M</p><p class="text-gray-600 dark:text-gray-400">or 2% of global revenue</p></div><div class="bg-orange-50 dark:bg-orange-900/30 p-6 rounded-lg border border-orange-200 dark:border-orange-800"><h3 class="font-bold text-xl mb-2 text-orange-600 dark:text-orange-400">Important Entities</h3><p class="text-4xl font-bold text-orange-700 dark:text-orange-300">€7M</p><p class="text-gray-600 dark:text-gray-400">or 1.4% of global revenue</p></div></div>
-                     <p class="text-center mt-6 text-gray-600 dark:text-gray-400">Regulators can also impose non-monetary remedies.</p>
-                </div>
-
-                <!-- Slide 7: Key Milestones -->
-                <div class="slide">
-                    <h2 class="text-3xl font-bold mb-6 text-center">Key Milestones</h2>
-                    <ul class="space-y-4"><li class="flex items-center"><div class="w-4 h-4 rounded-full bg-gray-300 dark:bg-gray-600 mr-4"></div><span><span class="font-semibold">Dec 27, 2022:</span> Directive enters into force</span></li><li class="flex items-center"><div class="w-4 h-4 rounded-full bg-yellow-400 mr-4"></div><span><span class="font-semibold">Oct 17, 2024:</span> National laws must be enacted</span></li><li class="flex items-center"><div class="w-4 h-4 rounded-full bg-red-500 mr-4"></div><span><span class="font-semibold">Oct 18, 2024:</span> Entities must comply</span></li><li class="flex items-center"><div class="w-4 h-4 rounded-full bg-green-500 mr-4"></div><span><span class="font-semibold">Apr 17, 2025:</span> Entity lists completed</span></li></ul>
-                </div>
-
-                <!-- Slide 8: Strategic Recommendations -->
-                <div class="slide">
-                    <h2 class="text-3xl font-bold mb-6 text-center">Strategic Roadmap to Compliance</h2>
-                    <ol class="list-decimal list-inside space-y-3 text-lg mb-8"><li>**Assess Scope:** Determine if you are an Essential or Important entity.</li><li>**Conduct Gap Analysis:** Identify weaknesses against NIS 2 requirements.</li><li>**Strengthen Governance:** Ensure executive accountability and training.</li><li>**Enhance Incident Response:** Refine processes to meet reporting deadlines.</li><li>**Review Supply Chain Risks:** Evaluate security of your partners and suppliers.</li><li>**Align with Standards:** Use frameworks like ISO 27001 to guide implementation.</li></ol>
-                </div>
-
-                <!-- Slide 9: Microsoft Cloud as a Compliance Enabler -->
-                <div class="slide">
-                    <h2 class="text-3xl font-bold mb-6 text-center">Microsoft Cloud as a Compliance Enabler</h2>
-                    <ul class="space-y-3 text-lg">
-                        <li class="flex items-start"><span class="text-blue-500 mr-3 mt-1.5">&#9679;</span><span><span class="font-semibold">Microsoft Purview:</span> Compliance dashboard & reporting</span></li>
-                        <li class="flex items-start"><span class="text-blue-500 mr-3 mt-1.5">&#9679;</span><span><span class="font-semibold">Microsoft Entra ID:</span> Identity, MFA, conditional access</span></li>
-                        <li class="flex items-start"><span class="text-blue-500 mr-3 mt-1.5">&#9679;</span><span><span class="font-semibold">Microsoft Defender:</span> Threat protection (cloud, endpoint, email)</span></li>
-                        <li class="flex items-start"><span class="text-blue-500 mr-3 mt-1.5">&#9679;</span><span><span class="font-semibold">Microsoft Sentinel:</span> SIEM/SOAR, real-time detection & response</span></li>
-                        <li class="flex items-start"><span class="text-blue-500 mr-3 mt-1.5">&#9679;</span><span><span class="font-semibold">Azure Policy/Backup:</span> Governance & recovery</span></li>
-                    </ul>
-                </div>
-
-                <!-- Slide 10: Final Recommendations & Contact -->
-                <div class="slide text-center">
-                    <h2 class="text-3xl font-bold mb-6">Final Recommendations</h2>
-                     <div class="space-y-4 max-w-2xl mx-auto">
-                        <p class="bg-indigo-50 dark:bg-indigo-900/30 p-4 rounded-lg text-indigo-800 dark:text-indigo-200">Don't wait for national law – <span class="font-semibold">act now</span> to prepare.</p>
-                        <p class="bg-indigo-50 dark:bg-indigo-900/30 p-4 rounded-lg text-indigo-800 dark:text-indigo-200">Use <span class="font-semibold">Microsoft Cloud tools</span> to automate compliance.</p>
-                        <p class="bg-indigo-50 dark:bg-indigo-900/30 p-4 rounded-lg text-indigo-800 dark:text-indigo-200">Treat NIS 2 as a <span class="font-semibold">strategic advantage</span>, not just a legal burden.</p>
-                        <p class="bg-indigo-50 dark:bg-indigo-900/30 p-4 rounded-lg text-indigo-800 dark:text-indigo-200">Embed security into <span class="font-semibold">every layer</span> of your business.</p>
-                     </div>
-                    <div class="mt-10 pt-6 border-t border-gray-200 dark:border-gray-700"><p class="text-lg font-semibold">Farhad Khankishiyev</p><a href="https://www.linkedin.com/in/farhadkhankishiyev/" target="_blank" class="text-indigo-500 dark:text-indigo-400 hover:underline mt-2 inline-block">LinkedIn Profile</a></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Navigation & Progress Bar -->
-        <div class="bg-gray-50 dark:bg-gray-700/50 p-4 border-t border-gray-200 dark:border-gray-700"><div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2 mb-4"><div id="progress-bar" class="bg-indigo-500 h-2 rounded-full progress-bar-fill" style="width: 0%;"></div></div><div class="flex justify-between items-center"><button id="prev-btn" class="px-4 py-2 bg-gray-300 dark:bg-gray-600 text-gray-800 dark:text-gray-200 rounded-lg hover:bg-gray-400 dark:hover:bg-gray-500 disabled:opacity-50">Previous</button><span id="slide-counter" class="text-sm text-gray-600 dark:text-gray-400"></span><button id="next-btn" class="px-4 py-2 bg-indigo-500 text-white rounded-lg hover:bg-indigo-600">Next</button></div></div>
-    </div>
-    
-    <script>
-        const slides = document.querySelectorAll('.slide');
-        const prevBtn = document.getElementById('prev-btn');
-        const nextBtn = document.getElementById('next-btn');
-        const slideCounter = document.getElementById('slide-counter');
-        const progressBar = document.getElementById('progress-bar');
+    <!-- Main Content -->
+    <main class="container mx-auto p-4 md:p-8">
         
-        let currentSlide = 0;
-        const totalSlides = slides.length;
+        <!-- Grid for Control Categories -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
 
-        function showSlide(index) {
-            slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
-            updateNavigation();
-        }
+            <!-- Organizational Controls Card -->
+            <section class="control-card p-6">
+                <div class="flex items-center mb-4">
+                    <!-- Icon for Organizational Controls -->
+                    <div class="bg-blue-100 text-blue-600 p-3 rounded-full mr-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                        </svg>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-800">Organizational Controls</h2>
+                </div>
+                <div class="space-y-2">
+                    <details class="group"><summary class="flex justify-between items-center p-4 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100"><span class="font-semibold text-gray-700">5.1 Policies for information security</span><svg class="w-6 h-6 text-gray-500 arrow-down" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></summary><div class="p-4 bg-white border border-t-0 rounded-b-lg"><p class="text-gray-600">Update policies to address cloud usage, data classification for the cloud, and shared responsibilities.</p></div></details>
+                    <details class="group"><summary class="flex justify-between items-center p-4 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100"><span class="font-semibold text-gray-700">5.2 Roles & Responsibilities</span><svg class="w-6 h-6 text-gray-500 arrow-down" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></summary><div class="p-4 bg-white border border-t-0 rounded-b-lg"><p class="text-gray-600">Clearly define who manages, secures, and monitors the on-premises and cloud environments.</p></div></details>
+                    <details class="group"><summary class="flex justify-between items-center p-4 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100"><span class="font-semibold text-gray-700">5.7 Threat intelligence</span><svg class="w-6 h-6 text-gray-500 arrow-down" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></summary><div class="p-4 bg-white border border-t-0 rounded-b-lg"><p class="text-gray-600">Collect and analyze threat intelligence for both your on-premises systems and the specific cloud services you use.</p></div></details>
+                    <details class="group"><summary class="flex justify-between items-center p-4 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100"><span class="font-semibold text-gray-700">5.9 Inventory of information</span><svg class="w-6 h-6 text-gray-500 arrow-down" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></summary><div class="p-4 bg-white border border-t-0 rounded-b-lg"><p class="text-gray-600">Extend your asset inventory to include cloud resources, data, and their owners.</p></div></details>
+                    <details class="group"><summary class="flex justify-between items-center p-4 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100"><span class="font-semibold text-gray-700">5.14 Information transfer</span><svg class="w-6 h-6 text-gray-500 arrow-down" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></summary><div class="p-4 bg-white border border-t-0 rounded-b-lg"><p class="text-gray-600">Establish secure transfer rules for moving data between on-premises and cloud environments.</p></div></details>
+                    <details class="group"><summary class="flex justify-between items-center p-4 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100"><span class="font-semibold text-gray-700">5.23 Use of cloud services</span><svg class="w-6 h-6 text-gray-500 arrow-down" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></summary><div class="p-4 bg-white border border-t-0 rounded-b-lg"><p class="text-gray-600">Establish processes for acquiring, using, managing, and exiting cloud services in line with security requirements.</p></div></details>
+                    <details class="group"><summary class="flex justify-between items-center p-4 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100"><span class="font-semibold text-gray-700">5.24 Incident management</span><svg class="w-6 h-6 text-gray-500 arrow-down" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></summary><div class="p-4 bg-white border border-t-0 rounded-b-lg"><p class="text-gray-600">Update incident management plans to include the hybrid environment and define response procedures.</p></div></details>
+                    <details class="group"><summary class="flex justify-between items-center p-4 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100"><span class="font-semibold text-gray-700">5.30 ICT readiness for BCP</span><svg class="w-6 h-6 text-gray-500 arrow-down" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></summary><div class="p-4 bg-white border border-t-0 rounded-b-lg"><p class="text-gray-600">Update and test business continuity plans for the hybrid model to ensure service restoration.</p></div></details>
+                    <details class="group"><summary class="flex justify-between items-center p-4 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100"><span class="font-semibold text-gray-700">5.31 Legal & regulatory</span><svg class="w-6 h-6 text-gray-500 arrow-down" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></summary><div class="p-4 bg-white border border-t-0 rounded-b-lg"><p class="text-gray-600">Identify and document legal requirements applicable to data in the cloud, such as data sovereignty.</p></div></details>
+                </div>
+            </section>
 
-        function updateNavigation() {
-            slideCounter.textContent = `Slide ${currentSlide + 1} of ${totalSlides}`;
-            const progressPercentage = ((currentSlide + 1) / totalSlides) * 100;
-            progressBar.style.width = `${progressPercentage}%`;
-            prevBtn.disabled = currentSlide === 0;
-            nextBtn.textContent = currentSlide === totalSlides - 1 ? 'Finish' : 'Next';
-        }
+            <!-- People Controls Card -->
+            <section class="control-card p-6">
+                <div class="flex items-center mb-4">
+                    <div class="bg-green-100 text-green-600 p-3 rounded-full mr-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-800">People Controls</h2>
+                </div>
+                <div class="space-y-2">
+                    <details class="group"><summary class="flex justify-between items-center p-4 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100"><span class="font-semibold text-gray-700">6.3 Awareness training</span><svg class="w-6 h-6 text-gray-500 arrow-down" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></summary><div class="p-4 bg-white border border-t-0 rounded-b-lg"><p class="text-gray-600">Train all personnel on updated security policies for the hybrid environment and cloud-specific risks.</p></div></details>
+                    <details class="group"><summary class="flex justify-between items-center p-4 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100"><span class="font-semibold text-gray-700">6.7 Remote working</span><svg class="w-6 h-6 text-gray-500 arrow-down" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></summary><div class="p-4 bg-white border border-t-0 rounded-b-lg"><p class="text-gray-600">Implement robust security measures to protect information accessed from outside the organization's premises.</p></div></details>
+                </div>
+            </section>
 
-        prevBtn.addEventListener('click', () => { if (currentSlide > 0) showSlide(--currentSlide); });
-        nextBtn.addEventListener('click', () => { showSlide(currentSlide < totalSlides - 1 ? ++currentSlide : (currentSlide = 0)); });
+            <!-- Physical Controls Card -->
+            <section class="control-card p-6">
+                <div class="flex items-center mb-4">
+                    <div class="bg-yellow-100 text-yellow-600 p-3 rounded-full mr-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-800">Physical Controls</h2>
+                </div>
+                 <div class="space-y-2">
+                    <details class="group"><summary class="flex justify-between items-center p-4 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100"><span class="font-semibold text-gray-700">7.1 Physical perimeters</span><svg class="w-6 h-6 text-gray-500 arrow-down" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></summary><div class="p-4 bg-white border border-t-0 rounded-b-lg"><p class="text-gray-600">Maintain responsibility for the physical security of your on-premises infrastructure.</p></div></details>
+                    <details class="group"><summary class="flex justify-between items-center p-4 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100"><span class="font-semibold text-gray-700">7.8 Equipment siting</span><svg class="w-6 h-6 text-gray-500 arrow-down" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></summary><div class="p-4 bg-white border border-t-0 rounded-b-lg"><p class="text-gray-600">On-premises equipment connecting to the cloud must be securely sited and protected.</p></div></details>
+                    <details class="group"><summary class="flex justify-between items-center p-4 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100"><span class="font-semibold text-gray-700">7.11 Supporting utilities</span><svg class="w-6 h-6 text-gray-500 arrow-down" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></summary><div class="p-4 bg-white border border-t-0 rounded-b-lg"><p class="text-gray-600">Protect on-premises facilities from power failures and other utility disruptions.</p></div></details>
+                    <details class="group"><summary class="flex justify-between items-center p-4 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100"><span class="font-semibold text-gray-700">7.12 Cabling security</span><svg class="w-6 h-6 text-gray-500 arrow-down" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></summary><div class="p-4 bg-white border border-t-0 rounded-b-lg"><p class="text-gray-600">Secure physical cabling for dedicated connections to the cloud to prevent interception or damage.</p></div></details>
+                </div>
+            </section>
 
-        // Initialize first slide
-        showSlide(currentSlide);
-    </script>
+            <!-- Technological Controls Card -->
+            <section class="control-card p-6">
+                <div class="flex items-center mb-4">
+                    <div class="bg-red-100 text-red-600 p-3 rounded-full mr-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-800">Technological Controls</h2>
+                </div>
+                 <div class="space-y-2">
+                    <details class="group"><summary class="flex justify-between items-center p-4 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100"><span class="font-semibold text-gray-700">8.1 User endpoint devices</span><svg class="w-6 h-6 text-gray-500 arrow-down" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></summary><div class="p-4 bg-white border border-t-0 rounded-b-lg"><p class="text-gray-600">Protect information on all user devices (laptops, phones) that can access the hybrid environment.</p></div></details>
+                    <details class="group"><summary class="flex justify-between items-center p-4 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100"><span class="font-semibold text-gray-700">8.5 Secure authentication</span><svg class="w-6 h-6 text-gray-500 arrow-down" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></summary><div class="p-4 bg-white border border-t-0 rounded-b-lg"><p class="text-gray-600">Implement strong authentication (e.g., MFA) for accessing both on-premises and cloud resources.</p></div></details>
+                    <details class="group"><summary class="flex justify-between items-center p-4 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100"><span class="font-semibold text-gray-700">8.9 Configuration management</span><svg class="w-6 h-6 text-gray-500 arrow-down" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></summary><div class="p-4 bg-white border border-t-0 rounded-b-lg"><p class="text-gray-600">Establish and maintain secure configurations for all hardware, software, and services in the hybrid environment.</p></div></details>
+                    <details class="group"><summary class="flex justify-between items-center p-4 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100"><span class="font-semibold text-gray-700">8.12 Data leakage prevention</span><svg class="w-6 h-6 text-gray-500 arrow-down" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></summary><div class="p-4 bg-white border border-t-0 rounded-b-lg"><p class="text-gray-600">Apply measures to systems and networks to prevent sensitive data leakage from any part of the hybrid environment.</p></div></details>
+                    <details class="group"><summary class="flex justify-between items-center p-4 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100"><span class="font-semibold text-gray-700">8.13 Information backup</span><svg class="w-6 h-6 text-gray-500 arrow-down" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></summary><div class="p-4 bg-white border border-t-0 rounded-b-lg"><p class="text-gray-600">Adapt backup policies to ensure data in both on-premises and cloud locations can be restored.</p></div></details>
+                    <details class="group"><summary class="flex justify-between items-center p-4 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100"><span class="font-semibold text-gray-700">8.16 Monitoring activities</span><svg class="w-6 h-6 text-gray-500 arrow-down" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></summary><div class="p-4 bg-white border border-t-0 rounded-b-lg"><p class="text-gray-600">Continuously monitor networks and systems across the entire hybrid environment for anomalous behavior.</p></div></details>
+                    <details class="group"><summary class="flex justify-between items-center p-4 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100"><span class="font-semibold text-gray-700">8.21 Security of network services</span><svg class="w-6 h-6 text-gray-500 arrow-down" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></summary><div class="p-4 bg-white border border-t-0 rounded-b-lg"><p class="text-gray-600">Identify, implement, and monitor security for all network services, including connections to the cloud.</p></div></details>
+                    <details class="group"><summary class="flex justify-between items-center p-4 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100"><span class="font-semibold text-gray-700">8.22 Segregation of networks</span><svg class="w-6 h-6 text-gray-500 arrow-down" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></summary><div class="p-4 bg-white border border-t-0 rounded-b-lg"><p class="text-gray-600">Use VPCs, subnets, and firewalls to isolate sensitive systems and control traffic flow in the hybrid network.</p></div></details>
+                    <details class="group"><summary class="flex justify-between items-center p-4 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100"><span class="font-semibold text-gray-700">8.24 Use of cryptography</span><svg class="w-6 h-6 text-gray-500 arrow-down" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></summary><div class="p-4 bg-white border border-t-0 rounded-b-lg"><p class="text-gray-600">Define and implement rules for using cryptography to protect data at rest and in transit, with robust key management.</p></div></details>
+                    <details class="group"><summary class="flex justify-between items-center p-4 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100"><span class="font-semibold text-gray-700">8.32 Change management</span><svg class="w-6 h-6 text-gray-500 arrow-down" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></summary><div class="p-4 bg-white border border-t-0 rounded-b-lg"><p class="text-gray-600">Apply formal change management procedures to all changes across the entire hybrid infrastructure.</p></div></details>
+                </div>
+            </section>
+
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="text-center p-6 mt-8">
+        <p class="text-gray-500">This presentation is a comprehensive guide and should be adapted to your organization's specific context and risk assessment results.</p>
+    </footer>
+
 </body>
 </html>
